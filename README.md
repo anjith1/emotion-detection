@@ -1,5 +1,5 @@
-# Emotion Detection with Azure Integration  
-✨ **Microsoft EduNet Internship Project**  
+# Emotion Detection   
+✨ ** Project**  
 
 ## Features  
 - Real-time emotion classification (Azure Text Analytics benchmarked)  
