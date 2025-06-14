@@ -13,7 +13,7 @@
 - Azure account (for cloud deployment)
 ```bash
 # Clone repo
-git clone https://github.com/anjith1/emotion-detection-azure.git
+git clone https://github.com/anjith1/emotion-detection.git
 cd emotion-detection-azure
 
 # Install dependencies
