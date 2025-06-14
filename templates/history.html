@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Emotion Analysis History</h1>
+        
+        <a href="/" class="back-button">Back to Analyzer</a>
+        
+        {% if not history %}
+        <div class="empty-state">
+            <p>No analysis history yet. Analyze some text to see it here!</p>
+        </div>
+        {% else %}
+        <div class="history-controls">
+            <a href="{{ url_for('clear_history') }}" class="clear-button">Clear History</a>
+        </div>
+        
+        <div class="history-grid">
+            {% for item in history|reverse %}
+            <div class="history-card">
+                <div class="card-header">
+                    <span class="timestamp">{{ item.timestamp }}</span>
+                    <span class="emotion-tag {{ item.emotion }}">{{ item.emotion }}</span>
+                </div>
+                
+                <div class="card-content">
+                    <p class="text-sample">{{ item.text }}</p>
+                    
+                    <div class="card-details">
+                        <div class="suggestion">
+                            <h4>Suggestion:</h4>
+                            <p>{{ item.suggestion }}</p>
+                        </div>
+                        
+                        <div class="probabilities">
+                            <h4>Emotion Probabilities:</h4>
+                            <ul>
+                                {% for emotion, prob in item.top_emotions %}
+                                <li>{{ emotion }}: {{ "%.2f"|format(prob * 100) }}%</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

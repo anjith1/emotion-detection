@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Emotion Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Emotion Analysis Results</h1>
+        
+        <div class="result-section">
+            <h2>Your Text:</h2>
+            <p class="text-sample">{{ text }}</p>
+            
+            <div class="emotion-result">
+                <h2>Detected Emotion: <span class="emotion">{{ emotion }}</span></h2>
+                
+                <div class="suggestion">
+                    <h3>Suggestion:</h3>
+                    <p>{{ suggestion }}</p>
+                </div>
+            </div>
+            
+            <div class="probabilities">
+                <h3>Emotion Probabilities:</h3>
+                <ul>
+                    {% for emotion, prob in top_emotions %}
+                    <li>{{ emotion }}: {{ "%.2f"|format(prob * 100) }}%</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <a href="/" class="back-button">Analyze Another Text</a>
+            <!-- Add this near the back button -->
+<a href="{{ url_for('history') }}" class="history-button">View History</a>
+        </div>
+    </div>
+</body>
+</html>
